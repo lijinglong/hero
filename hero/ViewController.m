@@ -93,7 +93,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.timer invalidate];
-    CGPoint endPoint = CGPointMake(self.roleImg.center.x + self.powerView.frame.size.height, self.roleImg.center.y);
+//    CGPoint endPoint = CGPointMake(self.roleImg.center.x + self.powerView.frame.size.height, self.roleImg.center.y);
 //    [self anmationWithStartPoint:self.roleImg.center endPoint:endPoint];
     [UIView animateWithDuration:1 animations:^{
         self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + self.powerView.frame.size.height / 2, self.roleImg.frame.origin.y - self.powerView.frame.size.height / 2, 10, 10);
