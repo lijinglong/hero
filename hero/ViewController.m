@@ -43,7 +43,7 @@
     self.view2.backgroundColor = [UIColor greenColor];
     [self.view addSubview:self.view2];
     
-    self.view3 = [[UIView alloc] initWithFrame:CGRectMake(320, 0, arc4random() % 50 + 10, 100)];
+    self.view3 = [[UIView alloc] initWithFrame:CGRectMake(320, 468, arc4random() % 50 + 10, 100)];
     self.view3.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.view3];
     
@@ -93,13 +93,23 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.timer invalidate];
-//    CGPoint endPoint = CGPointMake(self.roleImg.center.x + self.powerView.frame.size.height, self.roleImg.center.y);
-//    [self anmationWithStartPoint:self.roleImg.center endPoint:endPoint];
+    CGRect rect = self.powerView.frame;
     [UIView animateWithDuration:1 animations:^{
-        self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + self.powerView.frame.size.height / 2, self.roleImg.frame.origin.y - self.powerView.frame.size.height / 2, 10, 10);
+        self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + self.powerView.frame.size.height / 2, self.roleImg.frame.origin.y - rect.size.height / 2, 10, 10);
+        self.powerView.frame = CGRectMake(self.powerView.frame.origin.x, 300, self.powerView.frame.size.width, 2);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
-           self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + self.powerView.frame.size.height, self.roleImg.frame.origin.y + self.powerView.frame.size.height / 2, 10, 10);
+           self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + rect.size.height, self.roleImg.frame.origin.y + rect.size.height / 2, 10, 10);
+        }completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+                self.view1.frame = CGRectMake(-320, self.view1.frame.origin.y, self.view1.frame.size.width, self.view1.frame.size.height);
+                self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x - self.view2.frame.origin.x + 10, self.roleImg.frame.origin.y, 10, 10);
+                self.view2.frame = CGRectMake(10, self.view2.frame.origin.y, self.view2.frame.size.width, self.view2.frame.size.height);
+                self.view3.frame = CGRectMake(arc4random() % 100 + 20 + self.view2.frame.origin.x, self.view3.frame.origin.y, self.view3.frame.size.width, self.view3.frame.size.height);
+            } completion:^(BOOL finished) {
+                
+            }];
+            
         }];
     }];
 }
