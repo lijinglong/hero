@@ -14,6 +14,7 @@
 		899C24CD1B4B7F61000CD11C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899C24CC1B4B7F61000CD11C /* Images.xcassets */; };
 		899C24D01B4B7F61000CD11C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 899C24CE1B4B7F61000CD11C /* LaunchScreen.xib */; };
 		899C24DC1B4B7F61000CD11C /* heroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 899C24DB1B4B7F61000CD11C /* heroTests.m */; };
+		899C24E81B4BA35C000CD11C /* alert_type2.png in Resources */ = {isa = PBXBuildFile; fileRef = 899C24E71B4BA35C000CD11C /* alert_type2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		899C24D51B4B7F61000CD11C /* heroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		899C24DA1B4B7F61000CD11C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		899C24DB1B4B7F61000CD11C /* heroTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = heroTests.m; sourceTree = "<group>"; };
+		899C24E71B4BA35C000CD11C /* alert_type2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert_type2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				899C24C41B4B7F61000CD11C /* AppDelegate.m */,
 				899C24C61B4B7F61000CD11C /* ViewController.h */,
 				899C24C71B4B7F61000CD11C /* ViewController.m */,
+				899C24E71B4BA35C000CD11C /* alert_type2.png */,
 				899C24C91B4B7F61000CD11C /* Main.storyboard */,
 				899C24CC1B4B7F61000CD11C /* Images.xcassets */,
 				899C24CE1B4B7F61000CD11C /* LaunchScreen.xib */,
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				899C24CB1B4B7F61000CD11C /* Main.storyboard in Resources */,
+				899C24E81B4BA35C000CD11C /* alert_type2.png in Resources */,
 				899C24D01B4B7F61000CD11C /* LaunchScreen.xib in Resources */,
 				899C24CD1B4B7F61000CD11C /* Images.xcassets in Resources */,
 			);
