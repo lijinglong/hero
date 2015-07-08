@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self custom];
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(StartTimer) userInfo:nil repeats:NO];
     
     
 //    [self anmation];
@@ -36,9 +37,7 @@
 }
 
 - (void)custom{
-    
-    
-
+  
     self.view1 = [[UIView alloc]initWithFrame:CGRectMake(10, 568 - 100, arc4random() % 50 + 10, 100)];
     self.view1.backgroundColor = [UIColor redColor];
     self.view1.tag = 1000;
@@ -64,30 +63,14 @@
     self.roleImg.image = image;
     
     [self.view addSubview:self.roleImg];
-//    [self anmation];
+
 }
 
-- (void)anmationWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint{
-    
-    [UIView animateWithDuration:1 animations:^{
-        CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-        CGMutablePathRef thePath = CGPathCreateMutable();
-//        CGPoint startPoint = self.roleImg.frame.origin;
-//        CGPoint endPoint = CGPointMake(130, 300);
-        
-        CGPathMoveToPoint(thePath, NULL, startPoint.x, startPoint.y);
-        
-        CGPathAddQuadCurveToPoint(thePath, NULL, endPoint.x/2, 10, endPoint.x, endPoint.y);
-        bounceAnimation.path = thePath;
-        
-        bounceAnimation.duration = 0.7;
-        [self.roleImg.layer addAnimation:bounceAnimation forKey:@"move"];
-    } completion:^(BOOL finished) {
-       
-        self.roleImg.center = CGPointMake(endPoint.x, endPoint.y);
-    }];
-}
 
+- (void)StartTimer{
+
+    self.timer1 = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(zhuzimove) userInfo:nil repeats:YES];
+}
 
 - (void)powerViewadd{
     CGFloat height = self.powerView.frame.size.height + 2;
@@ -101,22 +84,40 @@
     CGFloat x3 = self.view3.frame.origin.x - 1;
     if (x1 < -150) {
         x1 = arc4random() % 40 + 320;
+        CGFloat width1 = arc4random() % 60 + 10;
+        self.view1.frame = CGRectMake(x1, self.view1.frame.origin.y, width1, self.view1.frame.size.height);
+//        NSLog(@"x1 === %f",x1);
     }
     if (x2 < -130) {
-        x2 = arc4random() % 50 + 320;
+        x2 = arc4random() % 50 + 360;
+        CGFloat width2 = arc4random() % 60 + 10;
+//        NSLog(@"x2 === %f",x2);
+        self.view2.frame = CGRectMake(x1, self.view2.frame.origin.y, width2, self.view1.frame.size.height);
     }
     if (x3 < -80) {
-        x3 = arc4random() % 60 + 320;
+        x3 = arc4random() % 60 + 380;
+        CGFloat width3 = arc4random() % 60 + 10;
+//        NSLog(@"x3 === %f",x3);
+        self.view3.frame = CGRectMake(x1, self.view3.frame.origin.y, width3, self.view3.frame.size.height);
     }
+
     self.view1.frame = CGRectMake(x1, self.view1.frame.origin.y, self.view1.frame.size.width, self.view1.frame.size.height);
     self.view2.frame = CGRectMake(x2, self.view2.frame.origin.y, self.view2.frame.size.width, self.view2.frame.size.height);
     self.view3.frame = CGRectMake(x3, self.view3.frame.origin.y, self.view3.frame.size.width, self.view3.frame.size.height);
    
 }
 
+- (void)roleImgMove{
+    if(self.view1.frame.origin.x > 0){
+        if (self.powerView.frame.size.width < self.view2.frame.origin.x - self.view1.frame.origin.x) {
+            NSLog(@"failed");
+        }
+    }
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(powerViewadd) userInfo:nil repeats:YES];
-    self.timer1 = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(zhuzimove) userInfo:nil repeats:YES];
+    
     [self.timer fire];
 
 }
@@ -132,7 +133,8 @@
         [UIView animateWithDuration:0.1 animations:^{
            self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + rect.size.height, self.roleImg.frame.origin.y + rect.size.height / 2, 10, 10);
         }completion:^(BOOL finished) {
-          [self.timer1 invalidate];
+//          [self.timer1 invalidate];
+           
         }];
     }];
     
