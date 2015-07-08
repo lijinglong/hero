@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UILabel *grades;
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer1;
 
 @end
 
@@ -28,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self custom];
+    
+    
 //    [self anmation];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -91,22 +94,45 @@
     self.powerView.frame = CGRectMake(self.powerView.frame.origin.x, self.powerView.frame.origin.y - 2, self.powerView.frame.size.width, height);
 }
 
+- (void)zhuzimove{
+
+    CGFloat x1 = self.view1.frame.origin.x - 1;
+    CGFloat x2 = self.view2.frame.origin.x - 1;
+    CGFloat x3 = self.view3.frame.origin.x - 1;
+    if (x1 < -150) {
+        x1 = arc4random() % 40 + 320;
+    }
+    if (x2 < -130) {
+        x2 = arc4random() % 50 + 320;
+    }
+    if (x3 < -80) {
+        x3 = arc4random() % 60 + 320;
+    }
+    self.view1.frame = CGRectMake(x1, self.view1.frame.origin.y, self.view1.frame.size.width, self.view1.frame.size.height);
+    self.view2.frame = CGRectMake(x2, self.view2.frame.origin.y, self.view2.frame.size.width, self.view2.frame.size.height);
+    self.view3.frame = CGRectMake(x3, self.view3.frame.origin.y, self.view3.frame.size.width, self.view3.frame.size.height);
+   
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(powerViewadd) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(powerViewadd) userInfo:nil repeats:YES];
+    self.timer1 = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(zhuzimove) userInfo:nil repeats:YES];
     [self.timer fire];
+
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.timer invalidate];
+    
     CGRect rect = self.powerView.frame;
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.1 animations:^{
         self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + self.powerView.frame.size.height / 2, self.roleImg.frame.origin.y - rect.size.height / 2, 10, 10);
         self.powerView.frame = CGRectMake(self.powerView.frame.origin.x, 300, self.powerView.frame.size.width, 2);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.1 animations:^{
            self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + rect.size.height, self.roleImg.frame.origin.y + rect.size.height / 2, 10, 10);
         }completion:^(BOOL finished) {
-            
+          [self.timer1 invalidate];
         }];
     }];
     
