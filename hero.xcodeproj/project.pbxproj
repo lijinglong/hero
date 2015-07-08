@@ -416,6 +416,7 @@
 				899C24E11B4B7F61000CD11C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		899C24E21B4B7F61000CD11C /* Build configuration list for PBXNativeTarget "heroTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +425,7 @@
 				899C24E41B4B7F61000CD11C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

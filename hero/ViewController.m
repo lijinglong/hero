@@ -51,7 +51,7 @@
     self.view3.tag = 1002;
     [self.view addSubview:self.view3];
     self.currentView.tag = 1004;
-    
+    self.currentView.tag = self.view1.tag;
     self.powerView = [[UIView alloc] initWithFrame:CGRectMake(20, 300, 10, 2)];
     self.powerView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:self.powerView];
@@ -106,20 +106,10 @@
         [UIView animateWithDuration:1 animations:^{
            self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x + rect.size.height, self.roleImg.frame.origin.y + rect.size.height / 2, 10, 10);
         }completion:^(BOOL finished) {
-            [UIView animateWithDuration:1 animations:^{
-                self.view1.frame = CGRectMake(-320, self.view1.frame.origin.y, self.view1.frame.size.width, self.view1.frame.size.height);
-                self.roleImg.frame = CGRectMake(self.roleImg.frame.origin.x - self.view2.frame.origin.x + 10, self.roleImg.frame.origin.y, 10, 10);
-                self.view2.frame = CGRectMake(10, self.view2.frame.origin.y, self.view2.frame.size.width, self.view2.frame.size.height);
-                self.view3.frame = CGRectMake(arc4random() % 100 + 20 + self.view2.frame.origin.x, self.view3.frame.origin.y, self.view3.frame.size.width, self.view3.frame.size.height);
-            } completion:^(BOOL finished) {
-                self.currentView.tag = self.view1.tag;
-                self.view1.tag = self.view2.tag;
-                self.view2.tag = self.view3.tag;
-                self.view3.tag = self.currentView.tag;
-            }];
             
         }];
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
